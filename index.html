@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+    <head>
+        <meta charset='UTF-8'>
+        <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+        <link rel='stylesheet' href='styles.css'>
+        <script defer src='main.js'></script>
+    </head>
+    <body>
+        <header>
+            <h1>Movie Night Assistant</h1>
+        </header>
+        <section id="view">
+            <div id="first" class="screen"></div>
+            <h3>You can review all choices submitted for movie night here</h3>
+            <div id="selector"></div>
+            <form id="filter">
+                <label for="film_filter">Director</label>
+                <input id="film_filter" type="datalist" class="input"></input>
+                <label for="title_filter">Title</label>
+                <input id="title_filter" type="datalist" class="input"></input>
+                <label for="year_filter">Release Year</label>
+                <input id="year_filter" class="input"></input>
+                <label for="rating_filter">Imdb Rating</label>
+                <input id="rating_filter" type="datalist" class="input"></input>
+                <label for="cast_filter">Cast</label>
+                <input id="cast_filter" type="datalist" class="input"></input>
+            </form>
+            <button id="voter" type="button">Cast vote</button>
+            <label for="voter">Click here to vote for your movie of choice</label>
+            <div id="movie_list"></div>
+        </section>
+        <section id="interact">
+            <div id="second" class="screen"></div>
+            <h3>Add any film you like to the pool</h3>
+            <form id="fiddle">
+                <label for="director_input">Director</label>
+                <input id="director_input" type="text" class="input"></input>
+                <label for="title_input">Title</label>
+                <input id="title_input" type="text" class="input"></input>
+                <label for="year_input">Release Year</label>
+                <input id="year_input" type="number" class="input"></input>
+                <label for="rating_input">Imdb Rating</label>
+                <input id="rating_input" type="number" class="input"></input>
+                <label for="cast_input">Cast Information</label>
+                <input id="cast_input" type="text" class="input"></input>
+                <label for="plot_input">Plot Summary</label>
+                <input id="plot_input" type="text" class="input"></input>
+                <button id="submit" type="button">Add movie</button>
+            </form>
+        </section>
+    </body>
+</html>
