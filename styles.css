@@ -35,16 +35,28 @@ html{
     padding:2rem;
     position:relative;
     margin:1rem;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
 }
 
 #movie_list{
     background:var(--darks);
-    height:100%;
-    width:50%;
+    height:90%;
+    width:100%;
     position:absolute;
     right:2rem;
-    top:0;
+    top:10%;
     border-radius:30%;
+    grid-column:2;
+}
+
+#filter{
+    grid-column:1;
+    width:100%;
+    display:flex;
+    flex-flow:column nowrap;
+    align-items:flex-start;
+    gap:0.2rem;
 }
 
 #selector{
@@ -67,7 +79,7 @@ html{
     margin:1rem;
 }
 
-form{
+#fiddle{
     width:70%;
     display:flex;
     flex-flow:column nowrap;
@@ -78,10 +90,11 @@ form{
 label{
     font-weight:bold;
     margin-top:0.8rem;
+    grid-column:1;
 }
 
 .input{
-    width:25rem;
+    width:80%;
     height:2rem;
     border:none;
 }
@@ -94,6 +107,7 @@ button{
     border:none;
     background:var(--base);
     border-radius:50%;
+    grid-column:1;
 }
 
 button:hover{
