@@ -1,5 +1,4 @@
-//local storage with the given data
-let movieData = [{
+let movieData = {
   "The Darjeeling Limited": {
     plot: "A year after their father's funeral, three brothers travel across India by train in an attempt to bond with each other.",
     cast: ["Jason Schwartzman", "Owen Wilson", "Adrien Brody"],
@@ -33,26 +32,109 @@ let movieData = [{
     plot: "A writer encounters the owner of an aging high-class hotel, who tells him of his early years serving as a lobby boy in the hotel's glorious years under an exceptional concierge.",
     cast: ["Ralph Fiennes", "F. Murray Abraham", "Mathieu Amalric"],
   },
-}];
-
-
-localStorage.setItem('MovieList', JSON.stringify(movieData));
+};
 
 //global variables
 const display = document.getElementById('movie_list');
+const selector = document.getElementById('selector');
 
-
-//display the list in #movie_list
+//display selected list in #movie_list
 function render(obj){
-  obj.forEach((o) => {
-    //create a paragraph element and its content at each iteration
+  document.getElementById('movie_list').innerHTML = '';
+  document.getElementById('selector').innerHTML = '';
+  for (let i of Object.keys(obj)){
     let par = document.createElement('p');
-    let cont = document.createTextNode(o.runtime);
-
-    //append the paragraph and content to their correct parent
+    par.classList.add('film_display');
+    par.classList.add('hidden');
+    par.setAttribute('onmouseover', 'details(this.textContent)', 'hide()');
+    let cont = document.createTextNode(i);
     display.appendChild(par);
     par.appendChild(cont);
-  });
+  }
 };
 
-console.log(object.keys(movieData));
+//display selected movie parameters in #selector
+function details(value){
+  selector.innerHTML = '';
+  for (let i of Object.keys(movieData)){
+    if (i == value){
+      for (let j of Object.entries(movieData[i])){
+        let prop = document.createElement('p');
+        let k = document.createTextNode(j);
+        prop.classList.add('details_display');
+        selector.appendChild(prop);
+        prop.appendChild(k);
+      }
+    }
+  };
+};
+
+//filter through movieData for the details entered by the user
+function search(){
+  let text = document.getElementById('title_filter').value;
+  let wanted = new RegExp (`${text}`,'ig');
+  for (let i of Object.keys(movieData)){
+    //console.log(wanted.test(i));
+    if (wanted.test(i)){
+      document.getElementById('movie_list').innerHTML = '';
+      let par = document.createElement('p');
+      par.classList.add('film_display');
+      par.setAttribute('onmouseover', 'details(this.textContent)');
+      let cont = document.createTextNode(i);
+      display.appendChild(par);
+      par.appendChild(cont);
+   }
+  }
+};
+
+//clear the filter
+function wipe(){
+  document.getElementById('title_filter').innerText = '';
+  render(movieData);
+};
+
+//add new Film to movieData
+function newFilm(){
+  let t = document.getElementById('title_input').value;
+  let d = document.getElementById('director_input').value;
+  let p = document.getElementById('plot_input').value;
+  let y = document.getElementById('year_input').value;
+  let r = document.getElementById('rating_input').value;
+  let c = document.getElementById('cast_input').value;
+
+ movieData[t] = {
+  director: d,
+  year: y,
+  rating: r,
+  cast: c,
+  plot: p,
+ };
+
+ localStorage.setItem('MovieList', JSON.stringify(movieData));
+ render(movieData);
+
+  document.getElementById('title_input').value = '';
+  document.getElementById('director_input').value = '';
+  document.getElementById('plot_input').value = '';
+  document.getElementById('year_input').value = '';
+  document.getElementById('rating_input').value = '';
+  document.getElementById('cast_input').value = '';
+
+  mirror();
+};
+
+//display details on new Film being created by the user
+function mirror(){
+  document.getElementById('director-mirror').innerText = document.getElementById('director_input').value;
+  document.getElementById('title-mirror').innerText = document.getElementById('title_input').value;
+  document.getElementById('year-mirror').innerText = document.getElementById('year_input').value;
+  document.getElementById('rating-mirror').innerText = document.getElementById('rating_input').value;
+  document.getElementById('cast-mirror').innerText = document.getElementById('cast_input').value;
+  document.getElementById('plot-mirror').innerText = document.getElementById('plot_input').value;
+}
+
+//call on startup
+render(movieData);
+
+
+console.log(movieData)

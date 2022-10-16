@@ -5,6 +5,7 @@
         <meta name='viewport' content='width=device-width, initial-scale=1.0'>
         <link rel='stylesheet' href='styles.css'>
         <script defer src='main.js'></script>
+        <title>Movie Night Assistant allows you to keep a common pool of movie selections</title>
     </head>
     <body>
         <header>
@@ -13,41 +14,52 @@
         <section id="view">
             <div id="first" class="screen"></div>
             <h3>You can review all choices submitted for movie night here</h3>
-            <div id="selector"></div>
             <form id="filter">
-                <label for="film_filter">Director</label>
-                <input id="film_filter" type="datalist" class="input"></input>
-                <label for="title_filter">Title</label>
+                <label for="title_filter">Search the pool by film title</label>
                 <input id="title_filter" type="datalist" class="input"></input>
+              <!--  <label for="film_filter">Director</label>
+                <input id="film_filter" type="datalist" class="input"></input>
                 <label for="year_filter">Release Year</label>
                 <input id="year_filter" class="input"></input>
                 <label for="rating_filter">Imdb Rating</label>
                 <input id="rating_filter" type="datalist" class="input"></input>
                 <label for="cast_filter">Cast</label>
-                <input id="cast_filter" type="datalist" class="input"></input>
+                <input id="cast_filter" type="datalist" class="input"></input> -->
+                <button id="fbutton" type="button" onclick="search()">Filter</button>
+                <button id="clear" type="button" onclick="wipe()">Clear Filter</button>
+                <div id="selector" class="hidden"></div>
             </form>
-            <button id="voter" type="button" onclick="render(movieData)">Cast vote</button>
-            <label for="voter">Click here to vote for your movie of choice</label>
             <div id="movie_list"></div>
         </section>
         <section id="interact">
             <div id="second" class="screen"></div>
             <h3>Add any film you like to the pool</h3>
-            <form id="fiddle">
+            <form id="fiddle"  onkeyup="mirror()">
                 <label for="director_input">Director</label>
-                <input id="director_input" type="text" class="input"></input>
+                <input id="director_input" type="text" class="input" required></input>
                 <label for="title_input">Title</label>
-                <input id="title_input" type="text" class="input"></input>
+                <input id="title_input" type="text" class="input" required></input>
                 <label for="year_input">Release Year</label>
-                <input id="year_input" type="number" class="input"></input>
+                <input id="year_input" type="number" class="input" required></input>
                 <label for="rating_input">Imdb Rating</label>
-                <input id="rating_input" type="number" class="input"></input>
+                <input id="rating_input" type="number" class="input" required></input>
                 <label for="cast_input">Cast Information</label>
-                <input id="cast_input" type="text" class="input"></input>
+                <input id="cast_input" type="text" class="input" required></input>
                 <label for="plot_input">Plot Summary</label>
-                <input id="plot_input" type="text" class="input"></input>
-                <button id="submit" type="button">Add movie</button>
+                <input id="plot_input" type="text" class="input" required></input>
+                <button id="submit" type="button" onclick="newFilm()">Add movie</button>
             </form>
+            <div id="mirror">
+                <div id="title-mirror" class="mirror"></div>
+                <div id="director-mirror" class="mirror"></div>
+                <div id="year-mirror" class="mirror"></div>
+                <div id="rating-mirror" class="mirror"></div>
+                <div id="cast-mirror" class="mirror"></div>
+                <div id="plot-mirror" class="mirror"></div>
+            </div>
         </section>
     </body>
+    <footer>
+        <p>developed by camelPhonso</p>
+    </footer>
 </html>
