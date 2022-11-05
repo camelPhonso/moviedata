@@ -17,8 +17,6 @@
             <form id="filter">
                 <label for="title_filter">Search the pool by film title</label>
                 <input id="title_filter" type="datalist" class="input"></input>
-                <button id="fbutton" type="button" onclick="search()">Filter</button>
-                <button id="clear" type="button" onclick="wipe()">Clear Filter</button>
                 <div id="selector" class="hidden"></div>
             </form>
             <div id="movie_list"></div>
@@ -28,17 +26,17 @@
             <h3>Add any film you like to the pool</h3>
             <form id="fiddle"  onkeyup="mirror()">
                 <label for="director_input">Director</label>
-                <input id="director_input" type="text" class="input" required></input>
+                <input id="director_input" type="text" class="input create" required></input>
                 <label for="title_input">Title</label>
-                <input id="title_input" type="text" class="input" required></input>
+                <input id="title_input" type="text" class="input create" required></input>
                 <label for="year_input">Release Year</label>
-                <input id="year_input" type="number" class="input" required></input>
+                <input id="year_input" type="number" class="input create" required></input>
                 <label for="rating_input">Imdb Rating</label>
-                <input id="rating_input" type="number" class="input" required></input>
+                <input id="rating_input" type="number" class="input create" required></input>
                 <label for="cast_input">Cast Information</label>
-                <input id="cast_input" type="text" class="input" required></input>
+                <input id="cast_input" type="text" class="input create" required></input>
                 <label for="plot_input">Plot Summary</label>
-                <input id="plot_input" type="text" class="input" required></input>
+                <input id="plot_input" type="text" class="input create" required></input>
                 <button id="submit" type="button" onclick="newFilm()">Add movie</button>
             </form>
             <div id="mirror">

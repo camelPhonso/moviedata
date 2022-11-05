@@ -40,13 +40,13 @@ const selector = document.getElementById('selector');
 
 //display selected list in #movie_list
 function render(obj){
-  document.getElementById('movie_list').innerHTML = '';
-  document.getElementById('selector').innerHTML = '';
+  display.innerHTML = '';
+  selector.innerHTML = '';
   for (let i of Object.keys(obj)){
     let par = document.createElement('p');
-    par.classList.add('film_display');
-    par.classList.add('hidden');
-    par.setAttribute('onmouseover', 'details(this.textContent)', 'hide()');
+    par.classList.add('film_display', 'hidden');
+    //par.classList.add('hidden');
+    par.setAttribute('onmouseover', 'details(this.textContent)');
     let cont = document.createTextNode(i);
     display.appendChild(par);
     par.appendChild(cont);
@@ -64,34 +64,38 @@ function details(value){
         prop.classList.add('details_display');
         selector.appendChild(prop);
         prop.appendChild(k);
-      }
-    }
+      };
+      break;
+    };
   };
 };
 
 //filter through movieData for the details entered by the user
 function search(){
+  selector.innerHTML = '';
+
   let text = document.getElementById('title_filter').value;
   let wanted = new RegExp (`${text}`,'ig');
-  for (let i of Object.keys(movieData)){
-    //console.log(wanted.test(i));
-    if (wanted.test(i)){
-      document.getElementById('movie_list').innerHTML = '';
-      let par = document.createElement('p');
-      par.classList.add('film_display');
-      par.setAttribute('onmouseover', 'details(this.textContent)');
-      let cont = document.createTextNode(i);
-      display.appendChild(par);
-      par.appendChild(cont);
-   }
-  }
+
+  if(text === ''){
+    render(movieData);
+  }else{
+    for (let i of Object.keys(movieData)){
+      if (wanted.test(i)){
+        document.getElementById('movie_list').innerHTML = '';
+        let par = document.createElement('p');
+        par.classList.add('film_display');
+        par.setAttribute('onmouseover', 'details(this.textContent)');
+        let cont = document.createTextNode(i);
+        display.appendChild(par);
+        par.appendChild(cont);
+     };
+    };
+  };
 };
 
-//clear the filter
-function wipe(){
-  document.getElementById('title_filter').innerText = '';
-  render(movieData);
-};
+//call search() by typing on title_filter
+document.getElementById('title_filter').addEventListener('keyup', search);
 
 //add new Film to movieData
 function newFilm(){
@@ -110,7 +114,6 @@ function newFilm(){
   plot: p,
  };
 
- localStorage.setItem('MovieList', JSON.stringify(movieData));
  render(movieData);
 
   document.getElementById('title_input').value = '';
@@ -135,6 +138,3 @@ function mirror(){
 
 //call on startup
 render(movieData);
-
-
-console.log(movieData)
