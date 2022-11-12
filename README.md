@@ -10,7 +10,7 @@ This was a real challenge during the application process because it was the firs
 
 ## Learnings
 This project helped me compreend DOM much better than before because it forced me to find different ways to display information based on user interaction with the page and also ways to allow the user to add information. Once I became aware of the method .createElement() a world of possibilities opened up. 
-But another learning that was meaningful to me was the handling of a multi-level Object. This was something I had a vague understanding of but once I actually handled the movieList object my knowledge was challenged and expanded.
+But another learning that was meaningful to me was the handling of a multi-level Object. This was something I had a vague understanding of but once I actually handled the movieDatat object my knowledge was challenged and expanded.
 
-A particular challenge I had to work through was in adding a new key to the movieList object. My first attempt was to create a new object through at constructor and then append it to the existing list - of course, this was treating movieList as an array of objects, which isn't the case.
+A particular challenge I had to work through was in adding a new key to the movieData object. My first attempt was to create a new object through at constructor and then append it to the existing list - of course, this was treating movieData as an array of objects, which isn't the case.
 Understanding the structure of the object made it easy to see the solution - defining a new object key with the values passed on from the user. This also moved my thinking away from typical array manipulation methods, like array.prototype.map() for example, and led to more creative solutions for the challenge.
