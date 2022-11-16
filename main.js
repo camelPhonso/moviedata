@@ -45,7 +45,6 @@ function render(obj){
   for (let i of Object.keys(obj)){
     let par = document.createElement('p');
     par.classList.add('film_display', 'hidden');
-    //par.classList.add('hidden');
     par.setAttribute('onmouseover', 'details(this.textContent)');
     let cont = document.createTextNode(i);
     display.appendChild(par);
@@ -75,14 +74,14 @@ function search(){
   selector.innerHTML = '';
 
   let text = document.getElementById('title_filter').value;
-  let wanted = new RegExp (`${text}`,'ig');
+  let wanted = new RegExp (`${text}`,'ig');          //regex needs reworking OR simpler function
 
   if(text === ''){
     render(movieData);
   }else{
+    document.getElementById('movie_list').innerHTML = '';
     for (let i of Object.keys(movieData)){
       if (wanted.test(i)){
-        document.getElementById('movie_list').innerHTML = '';
         let par = document.createElement('p');
         par.classList.add('film_display');
         par.setAttribute('onmouseover', 'details(this.textContent)');
